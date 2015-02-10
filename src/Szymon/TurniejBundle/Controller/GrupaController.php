@@ -26,9 +26,6 @@ class GrupaController extends Controller
 	{
 		$turniej = $this->get('turniej')->getCurrentTurniej();
 		if($turniej == null) {
-			return $this->forward('SzymonTurniejBundle:Turniej:wybierzTurniej');
-		}
-		if($turniej == null) {
 			return $this->redirect($this->generateUrl('SzymonTurniejBudnle:Turniej:wybierzTurniej'));
 		}
 		
