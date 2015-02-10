@@ -1,0 +1,38 @@
+{% extends 'SzymonTurniejBundle::layout.html.twig' %}
+
+{% block contents %}
+  <h1>Zawodnik</h1>
+
+  <table class="record_properties">
+    <tbody>
+      <tr>
+        <th>Id:</th>
+        <td>{{ entity.id }}</td>
+      </tr>
+      <tr>
+        <th>Imie:</th>
+        <td>{{ entity.imie }}</td>
+      </tr>
+      <tr>
+        <th>Nazwisko:</th>
+        <td>{{ entity.nazwisko }}</td>
+      </tr>
+      <tr>
+        <th>Rok urodzenia:</th>
+        <td>{{ entity.rokUrodzenia }}</td>
+      </tr>
+      <tr>
+        <th>Kategoria szachowa:</th>
+        <td>{{ entity.katSzachowa }}</td>
+      </tr>
+    </tbody>
+  </table>
+	<br>
+  <div class="list-group">
+    <a class="list-group-item" href="{{ path('zawodnik_new') }}">Dodaj nowego zawodnika</a>
+    <a class="list-group-item" href="{{ path('zawodnik') }}">Powróć do listy</a>
+    <a class="list-group-item" href="{{ path('zawodnik_edit', { 'id': entity.id }) }}">Edytuj</a>
+    <a class="list-group-item" href="#" onclick="document.forms[0].submit();return false;">Usuń</a>
+    {{ form(delete_form) }}
+  </div>
+{% endblock %}

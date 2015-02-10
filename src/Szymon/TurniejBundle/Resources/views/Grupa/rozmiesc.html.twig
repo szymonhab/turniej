@@ -1,0 +1,47 @@
+{% extends 'SzymonTurniejBundle::layout.html.twig' %}
+
+{% block contents %}
+	<h1>Zarządzaj grupami</h1>
+	
+	Ilość grup: {{ turniej.grupy|default([])|length }}
+	
+	<form action="{{ path('recznie') }}" method="post">
+		<br>
+		<table class="table table-bordered table-hover table-condensed"">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Imię</th>
+					<th>Nazwisko</th>
+					<th>Rok urodzenia</th>
+					<th>Kat. szachowa</th>
+					<th>Grupa</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for zawodnik in turniej.zawodnicy %}
+					<tr>
+						<td>{{ zawodnik.id }}</td>
+						<td>{{ zawodnik.imie }}</td>
+						<td>{{ zawodnik.nazwisko }}</td>
+						<td>{{ zawodnik.rokUrodzenia }}</td>
+						<td>{{ zawodnik.katSzachowa }}</td>
+						<td>
+							<select name="grupa[{{ zawodnik.id }}]">
+								{% for grupa in turniej.grupy %}
+									<option value="{{ grupa.id }}" {{ grupa.numerGrupy == zawodnik.grupa.numerGrupy|default(1) ? "selected=selected" : "" }}>{{ grupa.numerGrupy }}</option>
+								{% endfor %}
+							</select>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		
+		<br>
+		<div class="row" style="padding-right: 20px;">
+			<button type="submit" class="btn btn-success pull-right">Rozmieść</button>
+		</div>
+		<br>
+	</form>
+{% endblock %}

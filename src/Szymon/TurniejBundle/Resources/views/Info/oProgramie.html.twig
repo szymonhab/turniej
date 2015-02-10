@@ -1,0 +1,28 @@
+{% extends "SzymonTurniejBundle::layout.html.twig" %}
+
+{% block contents %}
+	<h1>O programie</h1>
+	
+	<p>
+		<b>Nazwa:</b>
+		TURNIEJ SZACHOWY
+	</p>
+	
+	<p>
+		<b>Opis:</b>
+		Program pomaga w przeprowadzeniu turnieju szachowego, umożliwia:
+	</p>
+	
+	<ul style="list-style: none">
+		<li><b>-</b> przeprowadzenie turnieju szachowego w systemie kołowym (każdy z każdym)</li>
+		<li><b>-</b> zarzadzanie turniejami w bazie danych</li>
+		<li><b>-</b> zgromadzenie podstawowych danych o zawodnikach, jakim są: (Imię, Nazwisko, Wiek, Kategoria szachowa)</li>
+		<li><b>-</b> dodawanie, usuwanie i edycja zawodników,</li>
+		<li><b>-</b> podziału zawodników na grupy w ze względu na przedział wiekowy, kategorie szachową lub manualnie.</li>
+		<li><b>-</b> ustalenie liczby grup oraz szachownic przed rozpoczęciem nowego turnieju.</li>
+		<li><b>-</b> ustalanie uczestników każdego meczu - kolor pionków (biały, czarny) przydzielany do zawodników przed każdym spotkaniem</li>
+		<li><b>-</b> punktowanie rozegranych spotkań ( 3 punkty wygrana, 1 punkt remis, 0 punktów porażka) oraz punktacja dodatkowa systemem Sonneberga-Bergera</li>
+		<li><b>-</b> zawiera pomoce w postaci regulaminu przeprowadzania turnieju szachowego</li>
+		<li><b>-</b> oraz zawiera rysunek sali, w której będzie przeprowadzany turniej szachowy obrazujący rozmieszczenie wyposażenia</li>
+	</ul>
+{% endblock %}

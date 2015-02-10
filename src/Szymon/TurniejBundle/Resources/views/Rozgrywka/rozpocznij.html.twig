@@ -1,0 +1,33 @@
+{% extends "SzymonTurniejBundle::layout.html.twig" %}
+
+{% block contents %}
+<h1>Rozpocznij turniej</h1>
+
+<br>
+<table>
+	<tr>
+		<td colspan=3>
+			{{ form_start(form) }}
+	    {{ form_errors(form) }}
+	  </td>
+	</tr>
+	<tr>
+		<td>
+      {{ form_label(form.szachownice) }}
+    </td>
+    <td>
+    	{{ form_errors(form.szachownice) }}
+    </td>
+    <td>
+    	{{ form_widget(form.szachownice) }}
+    </td>
+	</tr>
+	<tr>
+		<td colspan=3>
+			<br>
+			<input type="submit" class="btn btn-success" style="float: right" value="Rozpocznij"/>
+			{{ form_end(form) }}
+		</td>
+	</tr>
+</table>
+{% endblock %}

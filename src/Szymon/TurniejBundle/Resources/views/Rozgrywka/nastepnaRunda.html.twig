@@ -1,0 +1,38 @@
+{% extends "SzymonTurniejBundle::layout.html.twig" %}
+
+{% block contents %}
+	<h1>Następna Runda</h1>
+	Przejdź do rundy: {{ turniej.runda + 1 }}
+	<p>
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
+	</p>
+  <table>
+		<tr>
+			<td>
+				{{ form_label(form.liczbaZawodnikow) }}
+				<span class="fa fa-question question_mark"
+          title="Wpisz liczbę zawodników którzy z każdej grupy przejdą do kolejnej rundy">
+        </span>&nbsp;
+			</td><td>
+				{{ form_widget(form.liczbaZawodnikow) }}
+			</td><td>
+				{{ form_errors(form.liczbaZawodnikow) }}
+			</td>
+		</tr>
+	
+	  <tr>
+      <td></td>
+      <td align=right>
+				{{ form_widget(form.save, {'attr':{'class':'btn btn-success'}}) }}
+        {{ form_rest(form) }}
+      	{{ form_end(form) }}
+      </td>
+      <td></td>
+    </tr>
+  </table>
+{% endblock %}
+
+{% block javascriptsview %}
+  <script src="{{ asset('js/bla') }}"></script>
+{% endblock %}

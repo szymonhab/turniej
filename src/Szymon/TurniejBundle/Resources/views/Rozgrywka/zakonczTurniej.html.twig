@@ -1,0 +1,28 @@
+{% extends "SzymonTurniejBundle::layout.html.twig" %}
+
+{% block contents %}
+<h1>Zakończ turniej</h1>
+
+<h3>
+	Czy chcesz zakończyć turniej? <br>
+	Ostatnie rozgrywki są jeszcze dostępne do edycji w zakładce  
+	<a href="{{ path('rozgrywki_odbyte') }}" title="Przeglądaj i edytuj rozgrywki które już się odbyły">
+		Rozgrywki odbyte
+	</a>
+</h3>
+
+<table>
+	<tr>
+		<td colspan=3>
+			{{ form_start(form) }}
+	    {{ form_errors(form) }}
+	  </td>
+	</tr>
+	<tr>
+		<td colspan=3>
+			{{ form_widget(form.save, {'attr':{'class':'btn btn-success'}}) }}
+			{{ form_end(form) }}
+		</td>
+	</tr>
+</table>
+{% endblock %}

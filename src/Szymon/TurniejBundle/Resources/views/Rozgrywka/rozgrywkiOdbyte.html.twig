@@ -1,0 +1,131 @@
+{% extends "SzymonTurniejBundle::layout.html.twig" %}
+
+{% block contents %}
+	<h1>Rozgrywki odbyte</h1>
+	
+  <table>
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    <tr>
+      <td>
+        {{ form_label(form.runda) }}:
+      </td><td>
+        {{ form_widget(form.runda, { 'attr': {'class': 'form-control input-sm'} }) }}
+      </td><td>
+        {{ form_errors(form.runda) }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form_label(form.grupa) }}:
+      </td><td>
+        {{ form_widget(form.grupa, { 'attr': {'class': 'form-control input-sm'} }) }}
+      </td><td>
+        {{ form_errors(form.grupa) }}
+      </td>
+    </tr>
+    <tr>
+    	<td></td>
+      <td align=right>
+	      {{ form_widget(form.save, {'attr': {'class': 'btn btn-success'} }) }}
+      	{{ form_end(form) }}
+      </td>
+      <td>
+      	<button class="btn btn-primary pull-right" onclick="podliczWyniki()"
+						title="Podlicz wyniki dla aktualnej rundy"
+		        data-toggle="modal" data-target="#wyniki">
+		        Wyświetl wyniki
+				</button>
+			</td>
+    </tr>
+  </table>
+  <br>
+   
+	<table class="table table-bordered table-hover table-condensed">
+		<thead>
+			<tr>
+				<th class="c">Id</th>
+				<th class="c">Zawodnik pierwszy <span class="fa fa-question question_mark"
+            title="Zawodnik, który gra białymi figurami">
+          </span>
+        </th>
+        <th>Punkty</th>
+				<th class="c">Zawodnik drugi <span class="fa fa-question question_mark"
+            title="Zawodnik, który gra czarnymi figurami">
+          </span>
+				</th>
+				<th>Punkty</th>
+				<th class="c">Grupa</th>
+				<th class="c">Akcje</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for rozgrywka in rozgrywki %}
+				<form action="{{ path('rozgrywki_odbyte', {'runda':runda}) }}" method="post">
+					<tr class="{{ loop.index is odd ? 'color' : '' }}">
+						<td class="c nr_szachownicy">{{ rozgrywka.id }}</td>
+						<td class="c">{{ rozgrywka.zawodnik1.imie ~ ' '~ rozgrywka.zawodnik1.nazwisko }}</td>
+						<td class="c">{{ rozgrywka.punkty1 }}</td>
+						<td class="c">{{ rozgrywka.zawodnik2.imie ~ ' '~ rozgrywka.zawodnik2.nazwisko }}</td>
+						<td class="c">{{ rozgrywka.punkty2 }}</td>
+						<td class="c">{{ rozgrywka.zawodnik1.grupa.nazwaGrupy }}</td>
+						<td class="c">
+							<input type="hidden" name="id_rozgrywki" value="{{ rozgrywka.id }}"/>
+							<select name="kto_wygral" style="width: 150px;">
+								<option value="1" {{ rozgrywka.wynik == 1 ? 'selected' : '' }}>
+									{{ rozgrywka.zawodnik1.imie ~ ' '~ rozgrywka.zawodnik1.nazwisko }}
+								</option>
+								<option value="2" {{ rozgrywka.wynik == 2 ? 'selected' : '' }}>
+									{{ rozgrywka.zawodnik2.imie ~ ' '~ rozgrywka.zawodnik2.nazwisko }}
+								</option>
+								<option value="0" {{ rozgrywka.wynik == 0 ? 'selected' : '' }}>
+									Remis
+								</option>
+							</select>
+							<input type="submit" class="btn btn-xs btn-success" value="Popraw" style="position: relative; top: -1px"/>
+						</td>
+					</tr>
+				</form>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+	<!-- Modal wyniki -->
+	<div class="modal" id="wyniki" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      <div class="modal-header" >
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title c" id="myModalLabel" style="color: #4444cc">Wyniki</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<table class="table table-condensed">
+	      		<thead>
+	      			<tr>
+	      				<th>Zawodnik</th>
+	      				<th class="c">Punkty</th>
+	      				<th class="c">Punkty pomocnicze</th>
+	      				<th class="c">Grupa</th>	      				
+	      			</tr>
+	      		</thead>
+	      		<tbody id="podliczone_wyniki">
+	      			<div class="spinner" style="position: relative; top: 100px"></div>
+	      		  <!-- Tutaj AJAX rozpisze wyniki -->
+		        </tbody>
+	        </table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+{% endblock %}
+
+{% block javascriptsview %}
+  <script src="{{ asset('js/prowadz.js') }}"></script>
+  <script src="{{ asset('js/spin.min.js') }}"></script>
+  <script type="text/javascript">
+  	var podliczWynikiAddress = "{{ path('podlicz_wyniki', {'runda':runda}) }}";
+  </script>
+{% endblock %}

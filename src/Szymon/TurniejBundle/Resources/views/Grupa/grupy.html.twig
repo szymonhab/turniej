@@ -1,0 +1,80 @@
+{% extends 'SzymonTurniejBundle::layout.html.twig' %}
+
+{% block contents %}
+  <h1>Rozmieszczenie zawodników</h1>
+
+  	{% if turniej.sposobPrzyporzadkowania is null %}
+  		<script type="text/javascript">
+  			var iloscZawodnikow = {{ turniej.zawodnicy|length }}
+  		</script>
+  		Rozmieść zawodników w grupach według:
+  		<form action="{{ path('rozmiesc') }}" method="post">
+	  		<table>
+	  			<tr>
+						<td>
+							<input type="radio" name="sort" value="kat_szachowa" checked="checked"> Kategorii szachowej&nbsp;
+								<span class="fa fa-question question_mark"
+                			title="Opcja ta tworzy grupy i sortuje zawodników po ich kategorii szachowej, następnie dobiera grupy do zawodników tak aby zawodnicy z największą kategorią szachową byli w osobnych grupach">
+                </span>
+						</td>
+	  			</tr>
+	  			<tr>
+						<td>
+							<input type="radio" name="sort" value="wiek"> Wieku&nbsp;
+								<span class="fa fa-question question_mark"
+                			title="Opcja ta tworz grupy i segreguje zawodników od najstarszego do najmłodszego, następnie dobiera grupy do zawodników tak aby starsi grali ze starszymi a młodsi z młodszymi">
+                </span>
+						</td>
+	  			</tr>
+	  			<tr>
+						<td>
+							<input type="radio" name="sort" value="recznie"> Ręcznie&nbsp;
+								<span class="fa fa-question question_mark"
+                			title="Opcja ta tworzy odpowiednią ilość grup i pozwala ręcznie dobierać grupy do zawodników">
+                </span>
+						</td>
+	  			</tr>
+	  			<tr>
+						<td>
+							<input type="radio" name="sort" value="losowo"> Losowo&nbsp;
+								<span class="fa fa-question question_mark"
+                			title="Opcja ta tworzy odpowiednią ilość grup i rozmieszcza zawodników całkowicie losowo">
+                </span>
+                <br><br>
+						</td>
+	  			</tr>
+	  			<tr>
+						<td>
+							Ilość grup: 
+							<select name="group_amount" id="group_amount">
+								{% for iterator in 1..10 %}
+									<option value="{{ iterator }}">{{ iterator }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td>Ilość gier w pierwszej rundzie: </td>
+						<td><b id="group_amount_games">
+						
+						</b></td>
+	  			</tr>
+	  		</table>
+	  		
+  			<br>
+
+  			<button type="submit" class="btn btn-success pull-right">Rozmieść</button>
+  		</form>
+  	{% else %}
+  		Grupy zostały już stworzone.<br><br>
+  		{% if turniej.runda == 0 %}
+	  		<form action="{{ path('reset') }}" method="post">
+	  			<button type="submit" class="btn btn-danger">Resetuj grupy</button>
+	  		</form>
+  		{% endif %}
+  	{% endif %}
+  	
+  </p>
+{% endblock %}
+
+{% block javascriptsview %}
+  <script src="{{ asset('js/grupy.js') }}"></script>
+{% endblock %}

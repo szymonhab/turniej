@@ -1,0 +1,242 @@
+/* Główne style */
+body { 
+  background-color: #FFF;
+  font-family: Arial, Sans-serif !important;
+  color: #404040 !important;
+}
+
+nav {
+  float: left;
+  width: 220px;
+  display: block;
+  background-color: #444;
+}
+
+footer {
+  color: #EEE;
+  font-size: 16px;
+  display: block;
+  width: 1200px;
+  height: 40px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #444;
+  text-align: right;
+}
+
+footer span {
+  display: inline-block;
+  padding: 9px 20px 0px 0px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table td {
+	padding: 2px;
+}
+
+#content {
+  float: left;
+  height: 600px;
+  width: 980px;
+  background-color: #FFF;
+  overflow-y: auto;
+}
+
+#naglowek {
+  height: 200px;
+}
+
+/* Pojemnik strony */
+#container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#logo {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+/* Formatowanie listy menu */
+#menu ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+#menu > ul > li > a, #menu > ul > li > span {
+	cursor: pointer;
+  box-sizing: initial;
+  border-bottom: 1px solid #777;
+  display: inline-block;
+  width: 190px;
+  height: 60px;
+  line-height: 60px;
+  padding: 0px 0px 0px 30px;
+  background-color: #444;
+  color: #EEE;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+#menu > ul > li > span > a {
+  text-decoration: none;
+  color: #EEE;
+}
+
+#menu > ul > li > a:hover, #menu > ul > li > .selected, #menu > ul > li > span:hover {
+  background-color: #111;
+  border-bottom: 1px solid #009000;
+}
+
+#menu > ul > li > a > img {
+  padding: 18px 10px 0px 0px;
+  float: right;
+}
+
+#menu li ul{
+  display: none;
+}
+
+#menu > ul > li > .podmenu > li > a {
+  border-bottom: 1px solid #777;
+  display: inline-block;
+  width: 180px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0px 0px 0px 40px;
+  background-color: #444;
+  color: #EEE;
+  text-decoration: none;
+  font-size: 16px;
+  box-sizing: initial;
+}
+
+#menu > ul > li > .podmenu > li > a:hover {
+  background-color: #111;
+  border-bottom: 1px solid #009000;
+}
+
+#menu > ul > li > .podmenu > li > a > img{
+  margin: 7px 5px 0px 0px;
+  float: left;
+}
+
+#srodek {
+  width: 1200px;
+  background-color: #444;
+}
+
+#max {
+  float: left;
+}
+
+#min {
+  display: none;
+  float: left;
+}
+
+#text {
+  padding: 0px 30px 0px 30px;
+}
+
+#text h1 {
+  margin-left: 20px;
+  padding: 0px 0px 15px 0px;
+}
+
+.clear {
+  clear: both;
+}
+
+.redline {
+  width: 1200px;
+  height: 5px;
+  background-color: #009000;
+}
+
+.fa-home {
+	color: #eee; 
+	float: right; 
+	padding: 7px 4px 0px 0px
+}
+
+.c {
+  text-align: center; 
+}
+
+.r {
+	text-align: right;
+}
+
+.record_properties th, .record_properties td {
+  padding: 3px 20px 3px 3px;  
+}
+
+.fullscreen {
+	padding: 15px 0px 0px 0px;
+}
+
+.question_mark {
+  color: green;
+  cursor: pointer;
+}
+
+.add {
+  color: green;
+  cursor: pointer;
+}
+
+.list-group {
+	width: 220px !important;
+}
+
+.action {
+	color: #404040;
+}
+
+.hidden {
+	display: none;
+}
+
+.scroll {
+	overflow-y: scroll;
+}
+
+.color {
+	background-color: #e1e1e1;
+}
+
+.choosen {
+	background-color: #aaeeaa !important;
+}
+
+.wynik_rozgrywki {
+	cursor: pointer;
+}
+
+.modal .modal-body {
+  height: 420px;
+  overflow-y: auto;
+}
+
+.instrukcje_lista li {
+	list-style-type: none;
+	padding: 5px 0px 0px 0px;
+}
+
+.instrukcje_lista a {
+  color: #ff3333;
+}
+
+.instrukcje_lista a:hover {
+  color: #ff0000;
+}
+
+.redBg {
+	background-color: #ff7777 !important;
+}

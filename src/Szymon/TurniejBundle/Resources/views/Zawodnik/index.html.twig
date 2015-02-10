@@ -1,0 +1,45 @@
+{% extends 'SzymonTurniejBundle::layout.html.twig' %}
+
+{% block contents %}
+  <h1>Lista zawodników</h1>
+
+  <table class="table table-bordered table-hover table-condensed">
+    <thead>
+      <tr>
+        <th><a title="Sortuj" href="{{ path('zawodnik', { 'sort':'id', 'direction': descSort == 'id' ? 'desc' : 'asc'}) }}">Id</a></th>
+        <th><a title="Sortuj" href="{{ path('zawodnik', { 'sort':'imie', 'direction': descSort == 'imie' ? 'desc' : 'asc'}) }}">Imię</a></th>
+        <th><a title="Sortuj" href="{{ path('zawodnik', { 'sort':'nazwisko', 'direction': descSort == 'nazwisko' ? 'desc' : 'asc'}) }}">Nazwisko</a></th>
+        <th><a title="Sortuj" href="{{ path('zawodnik', { 'sort':'rokUrodzenia', 'direction': descSort == 'rokUrodzenia' ? 'desc' : 'asc'}) }}">Rok urodzenia</a></th>
+        <th><a title="Sortuj" href="{{ path('zawodnik', { 'sort':'katSzachowa', 'direction': descSort == 'katSzachowa' ? 'desc' : 'asc'}) }}">Kat. szachowa</a></th>
+        <th><a title="Sortuj" href="{{ path('zawodnik', { 'sort':'grupa', 'direction': descSort == 'grupa' ? 'desc' : 'asc'}) }}">Grupa</a></th>
+        <th>Informacje</th>
+        <th>Akcje</th>
+      </tr>
+    </thead>
+    <tbody>
+	    {% for zawodnik in entities %}
+	      <tr>
+	        <td><a href="{{ path('zawodnik_show', { 'id': zawodnik.id }) }}">{{ zawodnik.id }}</a></td>
+	        <td>{{ zawodnik.imie }}</td>
+	        <td>{{ zawodnik.nazwisko }}</td>
+	        <td class="c">{{ zawodnik.rokUrodzenia|default('Brak') }}</td>
+	        <td class="c">{{ zawodnik.katSzachowa }}</td>
+	        <td class="c">{{ zawodnik.grupa.numerGrupy|default('Brak grupy') }}</td>
+	        <td>{{ zawodnik.czyUsuniety == 1 ? 'Dyskwalifikacja' : '' }}</td>
+	        <td>
+	        <!--  <a class="action" title="pokaż szczegóły" href="{{ path('zawodnik_show', { 'id': zawodnik.id }) }}"><span class="fa fa-eye"></span></a> -->
+	        	<a class="action" title="edytuj" href="{{ path('zawodnik_edit', { 'id': zawodnik.id }) }}"><span class="fa fa-pencil"></span></a>
+	        </td>
+	      </tr>
+	    {% endfor %}
+    </tbody>
+  </table>
+	
+	<br>
+	<div class="row" style="padding-right: 20px;">
+	  <a class="btn btn-success pull-right" href="{{ path('zawodnik_new') }}">
+	    Dodaj nowego zawodnika
+	  </a>
+  </div>
+  <br>
+{% endblock %}

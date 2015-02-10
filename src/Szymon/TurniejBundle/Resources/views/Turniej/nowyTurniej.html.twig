@@ -1,0 +1,41 @@
+{% extends 'SzymonTurniejBundle::layout.html.twig' %}
+
+{% block contents %}
+  <h1>Nowy Turniej</h1>
+  <p>
+    <table>
+      {{ form_start(form) }}
+      {{ form_errors(form) }}
+
+      <tr>
+        <td>
+          {{ form_label(form.nazwaTurnieju) }}:
+        </td><td>
+          {{ form_widget(form.nazwaTurnieju, { 'attr': {'class': 'form-control input-sm', 'placeholder': 'Nazwa turnieju'} }) }}
+        </td><td>
+          {{ form_errors(form.nazwaTurnieju) }}
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          {{ form_label(form.dataRozpoczecia) }}:
+        </td><td>
+          {{ form_widget(form.dataRozpoczecia, { 'attr': {'class': 'form-control input-sm datepicker', 'placeholder': 'Data rozpoczęcia'} }) }}
+        </td><td>
+          {{ form_errors(form.dataRozpoczecia) }}
+        </td>
+      </tr>
+
+      <tr>
+      	<td></td>
+        <td align=right>
+	        {{ form_widget(form.zapisz, { 'label': 'Zatwierdź', 'attr': {'class': 'btn btn-success'} }) }}
+	        {{ form_end(form) }}
+        </td>
+        <td></td>
+      </tr>
+
+    </table>
+  </p>
+{% endblock %}

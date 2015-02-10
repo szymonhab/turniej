@@ -1,0 +1,152 @@
+{% extends "SzymonTurniejBundle::layout.html.twig" %}
+
+{% block contents %}
+	<h1>Prowadź turniej</h1>
+
+	<p>
+		<b>{{ turniej.nazwaRundy }}</b>
+	</p>
+	
+	<table class="table table-bordered table-hover table-condensed">
+		<thead>
+			<tr>
+				<th class="c">Nr. szachownicy</th>
+				<th class="c">Zawodnik pierwszy <span class="fa fa-question question_mark"
+            title="Zawodnik, który gra białymi figurami">
+          </span>
+        </th>
+				<th class="c">Zawodnik drugi <span class="fa fa-question question_mark"
+            title="Zawodnik, który gra czarnymi figurami">
+          </span>
+				</th>
+				<th class="c">Grupa</th>
+				<th class="c">Akcje</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for i in 1..turniej.iloscSzachownic %}
+				<form action="{{ path('zatwierdz_wynik') }}" method="post">
+					<tr class="{{ loop.index is odd ? 'color' : '' }}">
+						<td class="c nr_szachownicy">{{ i }}</td>
+						{% if rozgrywki[i] is defined %}
+							<td class="c">{{ rozgrywki[i].zawodnik1.imie ~ ' '~ rozgrywki[i].zawodnik1.nazwisko }}</td>
+							<td class="c">{{ rozgrywki[i].zawodnik2.imie ~ ' '~ rozgrywki[i].zawodnik2.nazwisko }}</td>
+							<td class="c">{{ rozgrywki[i].zawodnik1.grupa.nazwaGrupy }}</td>
+							<td class="c">Wygrał:&nbsp;
+								<input type="hidden" name="id_rozgrywki" value="{{ rozgrywki[i].id }}"/>
+								<select name="kto_wygral" style="width: 150px;">
+									<option value="1">{{ rozgrywki[i].zawodnik1.imie ~ ' '~ rozgrywki[i].zawodnik1.nazwisko }}</option>
+									<option value="2">{{ rozgrywki[i].zawodnik2.imie ~ ' '~ rozgrywki[i].zawodnik2.nazwisko }}</option>
+									<option value="0">Remis</option>
+								</select>
+								<input type="submit" class="btn btn-xs btn-success" value="Zatwierdź" style="position: relative; top: -1px"/>
+							</td>
+						{% else %}
+							<td class="c">brak</td>
+							<td class="c">brak</td>
+							<td class="c">brak</td>
+							<td class="c">
+								<a>
+									<span class="fa fa-plus add dodaj_rozgrywke" style="color: green"
+		                title="Rozpocznij rozgrywkę na tej szachownicy"
+		                data-toggle="modal" data-target="#rozgrywki">
+		              </span>
+		            </a>
+	            </td>
+						{% endif %}
+					</tr>
+				</form>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="row" style="padding-right: 20px;">
+		<button class="btn btn-primary pull-right" onclick="podliczWyniki()"
+						title="Podlicz wyniki dla aktualnej rundy"
+		        data-toggle="modal" data-target="#wyniki">
+		        Wyświetl wyniki
+		</button>
+	</div>
+	
+	<!-- Modal wybierz rozgrywke -->
+	<form action="{{ path('rozpocznij_rozgrywke') }}" method="post">
+		<input type="hidden" name="id_wybranej_rozgrywki" id="id_wybranej_rozgrywki" value="{{ dostepneRozgrywki[random-1].id|default(-1) }}" />
+		<input type="hidden" name="id_wybranej_szachownicy" id="id_wybranej_szachownicy" />
+		<div class="modal" id="rozgrywki" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title c" id="myModalLabel" style="color: #44cc44">Wybierz rozgrywkę</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<table class="table table-condensed">
+		      		<thead>
+		      			<tr>
+		      				<th style="display: none">Id rozgrywki</th>
+		      				<th>Zawodnik pierwszy</th>
+		      				<th>Zawodnik drugi</th>
+		      				<th>Grupa</th>
+		      				<th>Wybrany</th>
+		      			</tr>
+		      		</thead>
+		      		<tbody>
+				        {% for wynikRozgrywki in dostepneRozgrywki %}
+				        	<tr class="wynik_rozgrywki {{ loop.index is odd ? 'color' : '' }} {{ loop.index == random ? 'choosen' : '' }}">
+				        		<td class="wynik_rozgrywki_id" style="display: none">{{ wynikRozgrywki.id }}</td>
+				        		<td class="zawodnik1">{{ wynikRozgrywki.zawodnik1.imie ~ ' ' ~ wynikRozgrywki.zawodnik1.nazwisko  }}</td>
+				        		<td class="zawodnik2">{{ wynikRozgrywki.zawodnik2.imie ~ ' ' ~ wynikRozgrywki.zawodnik2.nazwisko  }}</td>
+				        		<td class="grupa">{{ wynikRozgrywki.zawodnik1.grupa.nazwaGrupy }}</td>
+				        		<td class="wybrany"><span class="{{ loop.index == random ? 'fa fa-check' : '' }}"></span></td>
+				        	</tr>
+				        {% endfor %}
+			        </tbody>
+		        </table>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+		        <button type="submit" class="btn btn-success">Rozpocznij rozgrywkę</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</form>	
+	
+	<!-- Modal wyniki -->
+	<div class="modal" id="wyniki" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      <div class="modal-header" >
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title c" id="myModalLabel" style="color: #4444cc">Wyniki</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<table class="table table-condensed">
+	      		<thead>
+	      			<tr>
+	      				<th>Zawodnik</th>
+	      				<th class="c">Punkty</th>
+	      				<th class="c">Punkty pomocnicze</th>
+	      				<th class="c">Grupa</th>	      				
+	      			</tr>
+	      		</thead>
+	      		<tbody id="podliczone_wyniki">
+	      			<div class="spinner" style="position: relative; top: 100px"></div>
+	      		  <!-- Tutaj AJAX rozpisze wyniki -->
+		        </tbody>
+	        </table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+{% endblock %}
+
+{% block javascriptsview %}
+  <script src="{{ asset('js/prowadz.js') }}"></script>
+  <script src="{{ asset('js/spin.min.js') }}"></script>
+  <script type="text/javascript">
+  	var podliczWynikiAddress = "{{ path('podlicz_wyniki', {'runda':turniej.runda}) }}";
+  </script>
+{% endblock %}

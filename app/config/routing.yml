@@ -1,0 +1,4 @@
+szymon_turniej:
+    resource: "@SzymonTurniejBundle/Controller/"
+    type:     annotation
+    prefix:   /

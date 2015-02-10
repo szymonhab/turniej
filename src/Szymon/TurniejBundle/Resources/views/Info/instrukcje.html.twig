@@ -1,0 +1,24 @@
+{% extends "SzymonTurniejBundle::layout.html.twig" %}
+
+{% block contents %}
+	<h1>Instrukcje</h1>
+	
+	<ul class="instrukcje_lista">
+		<li>
+			<a href="{{ asset('files/Regulamin_turnieju_szachowego.pdf') }}" class="fa fa-file-pdf-o fa-2x"></a>
+			&nbsp;<b>-</b> Regulamin turnieju szachowego
+		</li>
+		<li>
+			<a href="{{ asset('files/fide.pdf') }}" class="fa fa-file-pdf-o fa-2x"></a>
+			&nbsp;<b>-</b> Przepisy Gry Międzynarodowej Federacji Szachowej (FIDE)
+		</li>
+		<li>
+			<a href="{{ asset('files/Schemat_sali.pdf') }}" class="fa fa-file-pdf-o fa-2x"></a>
+			&nbsp;<b>-</b> Schemat sali w której będzie przeprowadzany turniej
+		</li>
+		<li>
+			<a href="{{ asset('files/Instrukcja.pdf') }}" class="fa fa-file-pdf-o fa-2x"></a>
+			&nbsp;<b>-</b> Instrukcja używania programu Turniej Szachowy
+		</li>
+	</ul>
+{% endblock %}

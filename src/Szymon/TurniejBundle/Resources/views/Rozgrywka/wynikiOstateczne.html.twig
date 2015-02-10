@@ -1,0 +1,58 @@
+{% extends "SzymonTurniejBundle::layout.html.twig" %}
+
+{% block contents %}
+	<h1>Wyniki końcowe</h1>
+
+	<p>
+		<b>{{ turniej.nazwaRundy }}</b>
+	</p>
+	
+	<table class="table table-bordered table-hover table-condensed">
+		<thead>
+			<tr>
+      	<tr>
+      		<th>Zawodnik</th>
+      		<th class="c">Punkty</th>
+      		<th class="c">Punkty pomocnicze</th>
+      		<th class="c">Grupa</th>	      				
+      	</tr>
+			</tr>
+		</thead>
+		<tbody>
+			{% for wynik in wyniki %}
+				<tr>
+					<td>{{ wynik['zawodnik'] }}</td>
+					<td class="c">{{ wynik['punkty'] }}</td>
+					<td class="c">{{ wynik['punkty_pomocnicze'] }}</td>
+					<td class="c">{{ wynik['grupa'] }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+	<!-- Modal wyniki -->
+	<div class="modal" id="wyniki" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      <div class="modal-header" >
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title c" id="myModalLabel" style="color: #4444cc">Wyniki</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<table class="table table-condensed">
+	      		<thead>
+
+	      		</thead>
+	      		<tbody id="podliczone_wyniki">
+	      			<div class="spinner" style="position: relative; top: 100px"></div>
+	      		  <!-- Tutaj AJAX rozpisze wyniki -->
+		        </tbody>
+	        </table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+{% endblock %}

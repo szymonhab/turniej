@@ -1,0 +1,125 @@
+{% extends "SzymonTurniejBundle::layout.html.twig" %}
+
+{% block contents %}
+	<h1>Regulamin turnieju szachowego:</h1>
+	
+	<ol style="width: 75%">
+	  <li>
+			Obowiązują PRZEPISY GRY MIĘDZYNARODOWEJ FEDERACJI SZACHOWEJ (FIDE).
+	  </li>
+		<li>
+			Podczas turnieju obowiązuje system punktacji Sonneberga-Bergera mówiący że:
+			Liczba punktów pomocniczych danego zawodnika składa się z sumy punktów końcowych 
+			tych zawodników, z którymi dany zawodnik wygrał oraz połowy punktów
+			końcowych z którymi dany zawodnik zremisował.
+		</li>
+		<li>
+			Każdy z zawodników powinien się kierować zasadami fair play.
+		</li>
+		<li>
+			Zasady rozgrywki:
+			<ul>
+				<li>
+					Turniej rozgrywany jest w dwóch fazach: grupowej i finałowej.
+				</li>
+				<li>
+					Gracze mogą być przyporządkowani do grup ze względu na:
+					<br>(a) kategorię szachową - gracze z największą kategorią szachową zostaną rozdzieleni do różnych grup, tak aby w grupach było możliwie największe zróżnicowanie umiejętności gry w szachy.
+					<br>(b) wiek - grupy zostaną stworzona na podstawie wieku - młodsi z młodszymi, starsi z starszymi 
+					<br>(c) ręcznie - według woli prowadzącego.
+					<br>(d) losowo - zawodnicy zostaną losowo rozmieszczeni do grup.
+					<br>Ilość grup jest zależna od liczby uczestników i ustala ją prowadzący.
+				</li>
+				<li>
+					W fazie grupowej prowadzone są rozgrywki, gdzie gra każdy z każdym w danej grupie.
+				</li>
+				<li>
+					W fazie finałowej zawodnicy wyłonieni z grup (liczbę osób wychodzących z
+					grup ustala prowadzący) grają między sobą, ale gracze, którzy spotkali się
+					wcześniej w fazie grupowej nie rozgrywają meczu między sobą a wynik jest
+					taki jak w fazie wcześniejszej.
+				</li>
+				<li>
+					Turniej trwa 2.5 godziny z tego:<br>
+					- 10 minut na przyjmowanie zgłoszeń(rejestrację),<br>
+					- 10 minut na losowanie spotkań,<br>
+					- Na każdą rozgrywaną partię przypada 10 minut. Każdy zawodnik ma 5
+						minut na wykonanie swoich posunięć.
+				</li>
+				<li>
+					Każdy zawodnik zaraz przed rozegraniem partii ma obowiązek ustawienia
+					zegara na godzinie 11:55 w celu odliczania podczas meczu czasu. Wskazów
+					ki zegara tak jak i chorągiewka znajdująca się na zegarze będą wskazywać
+					upływ 5 minut partii. Przez 4 minuty następuje wznoszenie chorągiewki -
+					wzdłuż linii czarnej następnie ostatnią minutę opadanie wzdłuż linii czerwonej. 
+					Opadnięcie chorągiewki całkowite oznacza, że upłynął czas, który gracz
+					miał do dyspozycji i partia zostaję zakończona.
+					Poniżej znajduję się rysunek obrazujący:<br>
+					<img src="{{ asset('images/zegar5minut_1.jpg') }}" alt="zegar" id="zegar"></img>
+					<br>
+					(a) obraz ustawienia wskazówek zegara przed rozpoczęciem partii,<br>
+					(b) obraz wskazówek zegara i flagi podczas rozgrywania partii,<br>
+					(c) obraz wskazówek zegara i flagi po zakończeniu partii.
+				</li>
+				<li>
+					Za zajecie pierwszych trzech miejsc w turnieju Zawodnicy otrzymują nagrody
+					przewidziane przez Organizatora.
+				</li>
+				<li>
+					Jeśli prowadzący ustali, uczestnicy będą mieli obowiązek zapisywać swoje
+					ruchy na wydzielonych do tego kartkach.
+				</li>
+				<li>
+					Każdy stanowisko do gry ma swój numer identyfikacyjny, który obowiązuje
+					przy rozgrywkach.
+				</li>
+				<li>
+					W sali, w której obywa się turniej szachowy zawodnicy jak i widzowie muszą
+					zachować bezwzględną ciszę, aby nie przeszkadzać graczom w rozgrywce.
+				</li>
+				<li>
+					Jeśli jakiś uczestnik turnieju lub widz będzie podpowiadał innemu uczestnikowi, 
+					zawodnik otrzymuje od Prowadzącego ostrzeżenie, w wypadku powtórzenia 
+					się sytuacji gracz któremu pomoc została ponownie udzielona może
+					zostać zdyskwalifikowany z dalszych rozgrywek przez Prowadzącego.
+				</li>
+				<li>
+					W turnieju obowiązuje punktacja ( 3 punkty - zwycięstwo, 1 punkt - remis, 0 punktów - porażka)
+				</li>
+			</ul>
+		</li>
+		<li>
+			W razie rezygnacji lub wykluczenia zawodnika z turnieju, rozgrywki, które zagrał
+			nie zostają anulowane, a osoby, które się z nim spotykają w dalszych rozgrywkach
+			wygrywają walkowerem (otrzymują 3 punkty).
+		</li>
+		<li>
+			W Sali zostało wydzielone pięć części:
+			<ol>
+				<li>Pierwsza, w której znajdują się tylko i wyłącznie osoby rozgrywające mecz</li>
+				<li>Druga, w której znajdują się widzowie bądź gracze, którzy obecnie nie rozgrywają żadnego spotkania</li>
+				<li>Trzecia, w której znajdują się stanowiska do gry w szachy poza turniejem</li>
+				<li>Czwarta, w której znajdują się gracze oczekujący na mecz</li>
+				<li>Piąta, w której znajduje się tylko i wyłącznie prowadzący turniej szachowy bądź osoby, 
+				które za zezwoleniem mogą znajdować się w tej strefie</li>
+			</ol>
+		</li>
+		<li>
+		  Zawodnicy, którzy nie grają lub czekają na swoją kolej w obrębie sali lub w niedalekiej 
+		  odległości od niej w wypadku wezwania do rozgrywki powinni w trybie
+		  natychmiastowym zgłosić się do udziału w spotkaniu. W wypadku niestawienia
+		  się do rozegrania meczu zawodnik zostaję zdyskwalifikowany.
+		</li>
+		<li>
+			W przypadku, gdy:
+			<ul>
+				<li>Zawodnik utrudnia przeprowadzanie rozgrywek może zostać zdyskwalifikowany 
+				z turnieju lub wyproszony z sali przez Prowadzącego.</li>
+				<li>Widz utrudnia przeprowadzanie rozgrywek może zostać wyproszony z sali
+				przez Prowadzącego.</li>
+			</ul>
+		</li>
+		<li>Udział w turnieju szachowym jest równoznaczny z zaakceptowaniem regulaminu</li>
+	</ol>
+
+{% endblock %}

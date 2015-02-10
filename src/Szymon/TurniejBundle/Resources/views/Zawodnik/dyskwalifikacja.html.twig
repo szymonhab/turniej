@@ -1,0 +1,33 @@
+{% extends 'SzymonTurniejBundle::layout.html.twig' %}
+
+{% block contents %}
+  <h1>Dyskwalifikacja zawodnika</h1>
+  
+  <p>
+    <table>
+      {{ form_start(form) }}
+      {{ form_errors(form) }}
+
+      <tr>
+        <td>
+          {{ form_label(form.zawodnicy) }}:
+        </td><td>
+          {{ form_widget(form.zawodnicy, { 'attr': {'class': 'form-control input-sm'}}) }}
+        </td><td>
+          {{ form_errors(form.zawodnicy) }}
+        </td>
+      </tr>
+
+      <tr>
+      	<td></td>
+        <td align=right>
+	        {{ form_widget(form.save, { 'label': 'Dyskwalifikuj', 'attr': {'class': 'btn btn-danger prompt'} }) }}
+	        {{ form_rest(form) }}
+	        {{ form_end(form) }}
+        </td>
+        <td></td>
+      </tr>
+
+    </table>
+  </p>
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+  <div id="container">
+    <header id="naglowek">
+      <img src="{{ asset('images/logo3.jpg') }}" alt="logo" id="logo"></img>
+    </header>
+
+    <div id="srodek">
+      <div class="redline"></div>
+      <nav id="menu">
+        <ul>
+          <li>
+            <span><a href="{{ path('home') }}">Strona główna</a><i class="fa fa-home fa-2x"></i></span>
+          </li>
+          <li>
+            <a>Turniej<img src="{{ asset('images/arrow-down.png') }}"></img></a>
+            <ul class="podmenu">
+              <li>
+                <a href="{{ path('nowy_turniej') }}" title="Stwórz nowy turniej">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  Nowy turniej
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('wybierz_turniej') }}" title="Wybierz turniej z bazy danych">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  Wybierz turniej
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('usun_turniej') }}" title="Usuń turniej z bazy danych">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  Usuń turniej
+                </a></li>
+            </ul>
+          </li>
+          <li>
+            <a>Zawodnicy<img src="{{ asset('images/arrow-down.png') }}"></img></a>
+            <ul class="podmenu">
+              <li>
+                <a href="{{ path('zawodnik') }}" title="Dodaj lub edytuj zawodników przypisanych do aktualnego turnieju">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  Lista
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('dyskwalifikacja') }}" title="Dyskwalifikacja zawodnika podczas trwania turnieju">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  Dyskwalifikuj
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+          	<a>Grupy<img src="{{ asset('images/arrow-down.png') }}"></img></a>
+          	<ul class="podmenu">
+          		<li>
+                <a href="{{ path('grupy') }}" title="Rozmieść zawodników do grup">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  Rozmieść</a>
+              </li>
+          		<li>
+                <a href="{{ path('recznie') }}" title="Lista zawodników, edycja ręczna">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  Zarządzaj</a>
+              </li>
+          	</ul>
+          <li>
+          <li>
+            <a>Rozgrywka<img src="{{ asset('images/arrow-down.png') }}"></img></a>
+            <ul class="podmenu">
+              <li>
+                <a href="{{ path('prowadz_rozgrywke') }}" title="Prowadź aktualne rozgrywki w turnieju">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  Aktualne rozgrywki
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('rozgrywki_odbyte') }}" title="Przeglądaj i edytuj rozgrywki które już się odbyły">
+                  <img src="{{ asset('images/arrow-right.png') }}">
+                  </img>
+                  Rozgrywki odbyte
+                </a>
+              </li>
+            </ul>          
+          </li>
+          <li>
+            <a>Informacje<img src="{{ asset('images/arrow-down.png') }}"></img></a>
+            <ul class="podmenu">
+              <li>
+                <a href="{{ path('instrukcje') }}" title="Przeczytaj instrukcje używania programu">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  Instrukcje
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('przygotowanie') }}" title="Przeczytaj liste potrzebnych rzeczy do odbywania turnieju">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  Przygotowanie
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('o_programie') }}">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  O programie
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('regulamin') }}">
+                  <img src="{{ asset('images/arrow-right.png') }}"></img>
+                  Regulamin
+                </a>
+              </li>
+            </ul>           
+          </li>
+        </ul>
+      </nav>  
+      <section id="content">
+        <div id="text">
+          <img src="{{ asset('images/fullscreen.png') }}" id="max" class="fullscreen" title="Maksymalizuj obszar roboczy"></img>
+          <img src="{{ asset('images/fullscreen.png') }}" id="min" class="fullscreen" title="Przywróć menu"></img>
+          {% if app.session.get('turniej_id') != '' %}
+          	<div style="float:right"><h4><span class="label label-success">
+          		Wybrany turniej: {{ app.session.get('nazwa_turnieju') }}, ID={{ app.session.get('turniej_id') }} 
+          	</span></h4></div>
+          {% else %}
+          	<div style="float:right"><h4><span class="label label-warning">Brak wybranego turnieju!</span></h4></div>
+          {% endif %}
+          
+          <div style="clear: both"></div>
+	        {% for flashMessage in app.session.flashbag.get('info') %}
+	          {% if flashMessage != '' %}
+	          	<br>
+	            <div class="flash-notice">
+	              <div class="alert alert-info" role="alert"><strong>Informacja: </strong>{{ flashMessage }}
+	                <a href="" onclick="$(this).parent().hide();" class="fa fa-times" style="float: right; color: red"></a>
+	              </div>
+	            </div>
+	          {% endif %}
+	        {% endfor %}
+	        
+          {% block contents %}{% endblock %}
+        </div>
+      </section>
+      <div class="clear"></div>
+      <div class="redline"></div>
+    </div>
+    
+    <footer>
+      <span>
+        Autor: Szymon Habela szymonhab@gmail.com
+      </span>
+    </footer>
+  </div>
+{% endblock %}
+
+{% block javascriptslayout %}
+  <script src="{{ asset('js/menu.js') }}"></script>
+{% endblock %}
